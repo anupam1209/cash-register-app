@@ -1,48 +1,48 @@
-const billAmount = document.querySelector("#bill-amount");
-const cashGiven = document.querySelector("#cash-given");
-const checkButton = document.querySelector("#check-button");
-const message = document.querySelector("#error-message");
-const noOfNotes = document.querySelector(".no-of-notes");
+const billAmountInput = document.querySelector("#billAmountInput");
+const cashAmountInput = document.querySelector("#cashAmountInput");
+const calculateChangeButton = document.querySelector("#calculateChangeButton");
+const outputDiv = document.querySelector("#outputDiv");
 
-const availableNotes = [2000 , 500 , 100 , 50 , 20 , 10 , 5 , 1];
-// billAmount.addEventListener("")
-
-// checkButton.addEventListener("click" , ()=> console.log("clicked"));
-
-checkButton.addEventListener("click" , function validateBillandCashAmount(){
-     hideMessage();
-     if(billAmount.value > 0){
-           if(cashGiven.value >= billAmount.value) {
-             const amountToBeReturned = cashGiven.value - billAmount.value;
-             calculateChange(amountToBeReturned);
-           }
-           else {
-               showMessage("Do you want to wash plates?")
-           }
-     }
-     else{
-           showMessage("Invalid Bill Amount");
-     }
-
-});
-
-function calculateChange(amountToBeReturned) {
-    //go over all the available notes we have
-    for(let  i = 0 ; i  < availableNotes.length ; i++) {
-        const numberOfNotes = Math.trunc(amountToBeReturned / availableNotes[i]);
-        //amount left after the number of notes required
-        amountToBeReturned %= availableNotes[i];
-        noOfNotes[i].innerText = numberOfNotes;
+const changeButtonHandler = () => {
+  const billAmount = parseInt(billAmountInput.value, 10);
+  const cashAmount = parseInt(cashAmountInput.value, 10);
+  const availableNotes = [2000, 500, 100, 20, 10, 5, 1];
+  if (billAmount > 0 && cashAmount > 0) {
+    if (billAmount < cashAmount) {
+      const change = calculateChange(billAmount, cashAmount, availableNotes);
+      // console.log({ outputDiv });
+      printOutput(availableNotes, change);
+    } else {
+      window.alert("Cash amount can not be less than bill amount");
     }
-    
-}
+  } else {
+    window.alert("Please enter positive values");
+  }
+};
 
-function hideMessage() {
-    message.style.display = "none";
-}
+const calculateChange = (billAmount, cashAmount, availableNotes) => {
+  let changeToGive = cashAmount - billAmount;
+  const changeInNotes = [];
+  for (let note of availableNotes) {
+    if (note <= changeToGive) {
+      const temp = parseInt(changeToGive / note, 10);
+      changeInNotes.push(temp);
+      changeToGive -= note * temp;
+    } else {
+      changeInNotes.push(0);
+    }
+  }
+  return changeInNotes;
+};
 
-function showMessage(msg) {
-    message.style.display = "block";
-    message.innerText = msg;
-}
+const printOutput = (availableNotes, change) => {
+  let htmlTemp = ``;
+  for (let i = 0; i < availableNotes.length; i++) {
+    if (change[i] !== 0) {
+      htmlTemp += `<p>${change[i]} x ₹${availableNotes[i]} note</p>`;
+    }
+  }
+  outputDiv.innerHTML = htmlTemp;
+};
 
+calculateChangeButton.addEventListener("click", changeButtonHandler);
