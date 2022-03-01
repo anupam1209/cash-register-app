@@ -1,52 +1,51 @@
 * {
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
-  }
-  
-  body {
-    font-family: sans-serif;
-  }
-  
-  h1 {
-    text-align: center;
-    color: purple;
-    margin: 1rem;
-  }
-  
-  input {
-    display: block;
-    width: 15rem;
-    padding: 0.5rem;
-    margin: 1rem auto;
-    border: 0.2rem solid purple;
-    color: purple;
-    border-radius: 1rem;
-  }
-  
-  button {
-    display: block;
-    padding: 0.5rem;
-    margin: 1rem auto;
-    border: 0.2rem solid purple;
-    border-radius: 1rem;
-    background-color: white;
-    color: purple;
-    font-weight: 600;
-  }
-  
-  button:hover {
-    background-color: purple;
-    color: white;
-  }
-  
-  #outputDiv {
-    margin: 1rem auto;
-    text-align: center;
-  }
-  
-  p {
-    font-size: 1.5rem;
-    color: purple;
-  }
-  
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: sans-serif;
+}
+
+h1 {
+  text-align: center;
+  color: purple;
+  margin: 1rem;
+}
+
+input {
+  display: block;
+  width: 15rem;
+  padding: 0.5rem;
+  margin: 1rem auto;
+  border: 0.2rem solid purple;
+  color: purple;
+  border-radius: 1rem;
+}
+
+button {
+  display: block;
+  padding: 0.5rem;
+  margin: 1rem auto;
+  border: 0.2rem solid purple;
+  border-radius: 1rem;
+  background-color: white;
+  color: purple;
+  font-weight: 600;
+}
+
+button:hover {
+  background-color: purple;
+  color: white;
+}
+
+#outputDiv {
+  margin: 1rem auto;
+  text-align: center;
+}
+
+p {
+  font-size: 1.5rem;
+  color: purple;
+}
